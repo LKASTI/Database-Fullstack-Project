@@ -1,0 +1,8 @@
+install npm and npx in client folder
+
+VS Code extensions:
+install..
+    - java extension pack
+    - springboot extension pack
+    - spring initialzr java support
+    - maven for java
