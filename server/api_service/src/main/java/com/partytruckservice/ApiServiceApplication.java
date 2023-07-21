@@ -1,4 +1,4 @@
-package com.partytruckservice.api_service;
+package com.partytruckservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,9 +16,9 @@ public class ApiServiceApplication {
 		SpringApplication.run(ApiServiceApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception{
+	// @Override
+	// public void run(String... args) throws Exception{
 		
-	}
+	// }
 
 }

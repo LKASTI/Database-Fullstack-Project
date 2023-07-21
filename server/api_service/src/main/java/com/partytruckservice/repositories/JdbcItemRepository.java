@@ -1,6 +1,6 @@
 package com.partytruckservice.repositories;
 
-import com.partytruckservice.Item;
+import com.partytruckservice.models.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class JdbcItemRepository implements ItemRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -57,21 +58,21 @@ public class JdbcItemRepository implements ItemRepository {
         );
     }
 
-    @Override
-    public List<Item> findByName(String name){
-        return jdbcTemplate.queryForList(
-            "SELECT * FROM item WHERE name LIKE ?",
-            String.class,
-            "%" + name + "%"
-        );
-    }
+    // @Override
+    // public List<Item> findByName(String name){
+    //     return jdbcTemplate.queryForList(
+    //         "SELECT * FROM item WHERE name LIKE ?",
+    //         String.class,
+    //         "%" + name + "%"
+    //     );
+    // }
 
-    @Override
-    public String getNameById(int id){
-        return jdbcTemplate.query(
-            "SELECT name FROM item WHERE id = ?",
-            id
-        );
-    }
+    // @Override
+    // public String getNameById(int id){
+    //     return jdbcTemplate.query(
+    //         "SELECT name FROM item WHERE id = ?",
+    //         id
+    //     );
+    // }
 
 }

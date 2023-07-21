@@ -1,24 +1,13 @@
-package main.models;
+package com.partytruckservice.models;
 
-import org.springframework.data.annotation;
+import org.springframework.data.annotation.*;
 
-@Entity
-@Table(name = "item")
 public class Item {
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
     private int itemID;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "manufacturer")
     private String manufacturer;
-
-    @Column(name = "price")
     private float price;
-
-    @Column(name = "stock")
     private int stock;
 
     public Item(String name, String manufacturer, float price, int stock){

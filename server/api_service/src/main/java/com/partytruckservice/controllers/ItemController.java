@@ -1,6 +1,6 @@
 package com.partytruckservice.controllers;
 
-import com.partytruckservice.item.models.Item;
+import com.partytruckservice.models.Item;
 import com.partytruckservice.repositories.JdbcItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,16 +21,16 @@ public class ItemController {
     private JdbcItemRepository jdbcItemRepository;
 
     @PostMapping("/create")
-    public Item create(@RequestBody Item item){
+    public int create(@RequestBody Item item){
         return jdbcItemRepository.save(item);
     }
 
-    @PutMapping("/updateItemStock{stock, name}")
-    public Item updateItemStock(@PathVariable int stock, @PathVariable String name){
-        return jdbcItemRepository.updateItemStock(stock, name);
+    @PutMapping("/updateItemStock{stock}/{name}")
+    public int updateItemStock(@PathVariable int stock, @PathVariable String name){
+        return jdbcItemRepository.updateItemStock(name, stock);
     }
 
-    @GetMapping
+    @GetMapping("/getAllItems")
     public List<Item> findAll(){
         return jdbcItemRepository.findAll();
     }
