@@ -1,4 +1,5 @@
 package main.models;
+
 import org.springframework.data.annotation;
 
 @Entity

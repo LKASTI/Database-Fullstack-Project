@@ -1,4 +1,4 @@
-package com.partytruckservice.JdbcItemRepository;
+package com.partytruckservice.repositories;
 
 import com.partytruckservice.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +27,10 @@ public class JdbcItemRepository implements ItemRepository {
     }
 
     @Override
-    public int updateItemStock(Item item){
+    public int updateItemStock(String name, int stock){
         return jdbcTemplate.update(
-          "UPDATE item SET stock = ? WHERE itemId = ?",
-            item.getStock(), item.getItemID()
+          "UPDATE item SET stock = ? WHERE name = ?",
+            stock, name
         );
     }
 
