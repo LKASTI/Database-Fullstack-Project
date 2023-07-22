@@ -22,8 +22,8 @@ public class JdbcItemRepository implements ItemRepository {
     @Override
     public int save(Item item){
         return jdbcTemplate.update(
-            "INSERT INTO item (name, manufacturer, stock, price) VALUES(?,?,?,?)",
-            item.getName(), item.getManufacturer(), item.getStock(), item.getPrice()
+            "INSERT INTO item (itemId, name, manufacturer, stock, price) VALUES(?,?,?,?,?)",
+            item.getItemID(), item.getName(), item.getManufacturer(), item.getStock(), item.getPrice()
         );
     }
 

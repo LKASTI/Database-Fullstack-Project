@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -21,7 +22,14 @@ public class ItemController {
     private JdbcItemRepository jdbcItemRepository;
 
     @PostMapping("/create")
-    public int create(@RequestBody Item item){
+    public int create(@RequestBody Map<String, String> body){
+        int id = Integer.parseInt(body.get("id"));
+        String name = body.get("name");
+        String manufacturer = body.get("manufacturer");
+        int stock = Integer.parseInt(body.get("stock"));
+        float price = Float.parseFloat(body.get("price"));
+        Item item = new Item(id, name, manufacturer, price, stock);
+
         return jdbcItemRepository.save(item);
     }
 
