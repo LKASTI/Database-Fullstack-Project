@@ -15,7 +15,7 @@ public interface ItemRepository {
 
     int deleteById(int id);
 
-    List<Item> findAll();
+    List<Item> getAllItems();
 
     // List<Item> findByName(String name);
 

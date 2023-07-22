@@ -44,7 +44,7 @@ public class JdbcItemRepository implements ItemRepository {
     }
 
     @Override
-    public List<Item> findAll(){
+    public List<Item> getAllItems(){
         return jdbcTemplate.query(
             "SELECT * FROM item",
             (rs, rowNum) -> 

@@ -39,7 +39,7 @@ public class ItemController {
     }
 
     @GetMapping("/getAllItems")
-    public List<Item> findAll(){
-        return jdbcItemRepository.findAll();
+    public List<Item> getAllItems(){
+        return jdbcItemRepository.getAllItems();
     }
 }
