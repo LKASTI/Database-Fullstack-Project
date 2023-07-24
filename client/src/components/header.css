@@ -1,0 +1,17 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: dodgerblue;
+
+    
+}
+
+.header-title{
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}

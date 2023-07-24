@@ -1,0 +1,34 @@
+.createCustomer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.customer-info-label{
+    margin: 15px 0px;
+    font-size: 25px;
+}
+
+.customerform-input{
+    border: 2px black solid;
+    border-radius: 5px;
+}
+
+#submit-customer{
+    width: 100%;
+
+    margin-top: 15px;
+
+    border-radius: 15px;
+    background-color: orange;
+    filter:drop-shadow(0px 3px 0px rgb(216, 141, 0));
+
+    cursor: pointer;
+
+    padding: 5px 0px;
+}
+
+#submit-customer:hover{
+    background-color: rgb(255, 178, 35);
+}

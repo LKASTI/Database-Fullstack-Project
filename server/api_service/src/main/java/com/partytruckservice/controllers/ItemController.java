@@ -28,6 +28,7 @@ public class ItemController {
         String manufacturer = body.get("manufacturer");
         int stock = Integer.parseInt(body.get("stock"));
         float price = Float.parseFloat(body.get("price"));
+        
         Item item = new Item(id, name, manufacturer, price, stock);
 
         return jdbcItemRepository.save(item);
