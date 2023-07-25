@@ -5,10 +5,11 @@ import "./createevent.css"
 
 const CreateEvent = () => {
     const [startTime, setStartTime] = useState()
-    const [endTime, endStartTime] = useState()
+    const [endTime, setEndTime] = useState()
     const [packageType, setPackageType] = useState()
     const [eventAddress, setEventAddress] = useState()
     const [assignedEmployee, setAssignedEmployee] = useState()
+    const [validEvent, setValidEvent] = useState(false)
 
     //getting the cID from the URL
     const params = useParams()
@@ -20,7 +21,7 @@ const CreateEvent = () => {
         //store the employee id in assignedEmployee
     }
 
-    const createAnEvent = () => {
+    const createAnEvent = async () => {
         //create a default package
         /*
           create an event with
