@@ -1,16 +1,21 @@
 import "./createcustomer.css"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const CreateCustomer = () => {
     // use axios to post the customer form data on submit
     // need to check if there isn't a prexisting customer with that info
     // once checked the customer doesn't already exist and the data is posted then hit next button to go to event creation page tied to customer ID in URL
+    const navigate = useNavigate()
 
     const [phoneNum, setPhoneNum] = useState()
     const [address, setAddress]  = useState()
     const [dob, setDob] = useState()
     const [fname, setFname] = useState()
     const [lname, setLname] = useState()
+    const [cID, setCID] = useState()
+
+    const [customerCreated, setCustomerCreated] = useState(false)
 
     const handleCustomerSubmission = async (e) => {
         e.preventDefault()
@@ -24,10 +29,19 @@ const CreateCustomer = () => {
         }
 
         console.log(newCustomer)
+        /*TODO*/
         //post to springboot endpoint with axios
-        //store the ID
+        //store the ID in cID state
+        //if successfully posted and cID is set then set customerCreated to true
     }
 
+    const handleNextPage = () => {
+        if(customerCreated)
+            navigate(`event-form/${cID}`)
+        else
+            alert("Please fill the entire form.")
+        
+    }
 
     return(
         <div className="createCustomer">
@@ -76,7 +90,7 @@ const CreateCustomer = () => {
                 <input id="submit-customer" type="submit" value="Submit" />
             </form>
             
-            <button onClick={()=>{}}>Next</button>
+            <button onClick={handleNextPage}>Next</button>
         </div>
     )
 }
