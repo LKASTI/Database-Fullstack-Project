@@ -7,6 +7,7 @@ import "./createevent.css"
 const CreateEvent = () => {
     const [startTime, setStartTime] = useState()
     const [endTime, setEndTime] = useState()
+    const [date, setDate] = useState()
     
     const [isPresetPack, setIsPresetPackage] = useState(false)
     const [isCustomPack, setIsCustomPackage] = useState(false)
@@ -14,7 +15,7 @@ const CreateEvent = () => {
     const [eventAddress, setEventAddress] = useState()
     const [assignedEmployee, setAssignedEmployee] = useState()
     const [validEvent, setValidEvent] = useState(false)
-    const [createdEvent, setCreatedEvent] = useState(false)
+    const [eventCreated, setEventCreated] = useState(false)
 
     //getting the cID from the URL
     const params = useParams()
@@ -49,7 +50,38 @@ const CreateEvent = () => {
                 setIsPresetPackage={setIsPresetPackage} setIsCustomPackage={setIsCustomPackage}    
             />
             <form className="createEvent-form">
+                <label id="event-info-title">Enter Event Info</label>
 
+                <div className="createEvent-address-box">
+                    <label>Address</label>
+                    <input id="event-userinput"/>
+                </div>
+
+                <div className="createEvent-date-box">
+                    <label>Date of Event</label>
+                    <input id="event-userinput"/>
+                </div>
+
+                <div id="createEvent-eventTime-box">
+                    <div className="eventTime-start_end">
+                        <label>Start Time of Event</label>
+                        <input id="event-userinput" type="time"/>
+
+                        <label>End Time of Event</label>
+                        <input id="event-userinput" type="time"/>
+                    </div>
+                    <button id="checkTimes-button" onClick={checkTimes}>Check<br/> Times</button>
+                </div>
+
+                <input id="submit-event" type="submit" value={"Submit"} 
+                    style={{backgroundColor: `${validEvent? "green":"red"}`}}
+                />
+
+                <button id="next-button"
+                    style={{backgroundColor: `${eventCreated? "green":"red"}`}}
+                >
+                    Next
+                </button>
             </form>
         </div>
     )
