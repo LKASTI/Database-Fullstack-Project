@@ -9,7 +9,7 @@ const Home = () => {
         <div className="home">
             <div className="home-content">
                 <p className="home-content-description">
-                    --Company Name-- is a rental service that delivers event packages to you.
+                    Party Truck Service is a rental service that delivers event packages to you.
                 </p>
                 <div className="home-content-buttons">
                     <button onClick={() => {navigate("/customer-form")}} id="createReservation" className="home-createReservation-button">Create Reservation</button>
