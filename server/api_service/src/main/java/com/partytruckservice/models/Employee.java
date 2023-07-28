@@ -1,12 +1,11 @@
 package com.partytruckservice.models;
-import lombok.Setter;
-import lombok.Getter;
+
+import lombok.Data;
+
+@Data
 public abstract class Employee {
-    @Getter
-    @Setter
     protected int employeeID;
-    protected String fName;
-    protected String lName;
-    protected int eventID;
+    protected String FName;
+    protected String LName;
 
 }
