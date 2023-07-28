@@ -1,13 +1,15 @@
 package com.partytruckservice.repositories;
 
+import java.util.List;
+
 import com.partytruckservice.models.ContractEmployee;
 
 public interface ContractEmployeeRepository {
-    int save(ContractEmployee fullTimeEmployee);
+    public int save(ContractEmployee contractEmployee);
     
-    int update(ContractEmployee fullTimeEmployee);
+    public int update(ContractEmployee contractEmployee);
 
-    ContractEmployee getByID(float eID);
+    public List<ContractEmployee> getByID(float eID);
 
-    int deleteByID(float eID);
+    public int deleteByID(float eID);
 }
