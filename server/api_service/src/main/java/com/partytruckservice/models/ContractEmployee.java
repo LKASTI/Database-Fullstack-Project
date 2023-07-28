@@ -7,5 +7,5 @@ import lombok.Setter;
 public class ContractEmployee extends Employee {
     @Getter
     @Setter
-    private float hourlyRate;
+    private float hourlyPayRate;
 }
