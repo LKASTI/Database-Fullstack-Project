@@ -12,6 +12,10 @@ public interface EventRepository {
 
     int save(dbEvent event);
 
+    int updateEventCustomer(int eventID, int cID);
+    
+    int updateEventPackage(int eventID, int pID);
+     
     int deleteById(int id);
 
     List<dbEvent> getAllEvents();

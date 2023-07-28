@@ -53,4 +53,21 @@ public class JdbcEventRepository implements EventRepository {
         );
     }
 
+    @Override
+    public int updateEventCustomer(int cID, int eventID){ 
+        return jdbcTemplate.update(
+            "UPDATE event SET cID = ? WHERE eventID = ?",
+              cID, eventID
+          );
+        
+    }
+    
+    @Override
+    public int updateEventPackage(int pID, int eventID){
+        return jdbcTemplate.update(
+            "UPDATE event SET pID = ? WHERE eventID = ?",
+              pID, eventID
+          );
+     }
+
 }
