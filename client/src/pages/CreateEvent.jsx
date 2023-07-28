@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
 import {Link, useParams} from "react-router-dom"
+import ChoosePackageType from "../components/ChoosePackageType"
 import "./createevent.css"
 
 const CreateEvent = () => {
     const [startTime, setStartTime] = useState()
     const [endTime, setEndTime] = useState()
-    const [packageType, setPackageType] = useState()
+    
+    const [isPresetPack, setIsPresetPackage] = useState(false)
+    const [isCustomPack, setIsCustomPackage] = useState(false)
+
     const [eventAddress, setEventAddress] = useState()
     const [assignedEmployee, setAssignedEmployee] = useState()
     const [validEvent, setValidEvent] = useState(false)
@@ -15,7 +19,6 @@ const CreateEvent = () => {
     //getting the cID from the URL
     const params = useParams()
     const cID = params.cID
-
 
     const checkTimes = async () => {
         //check if the given times conflict with a prexisting event and if an employee is able to attend
@@ -41,6 +44,13 @@ const CreateEvent = () => {
 
     return(
         <div className="createEvent">
+            <ChoosePackageType 
+                isPresetPack={isPresetPack} isCustomPack={isCustomPack}
+                setIsPresetPackage={setIsPresetPackage} setIsCustomPackage={setIsCustomPackage}    
+            />
+            <form className="createEvent-form">
+
+            </form>
         </div>
     )
 }
