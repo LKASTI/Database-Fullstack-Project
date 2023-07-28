@@ -1,0 +1,27 @@
+.choosePackage > * > button{
+    padding: 10px 30px;
+    border-radius: 40px;
+
+    font-size: 30px;
+}
+
+.choosePackage{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-top: 50px;
+}
+
+.choosePackage > *{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.choosePackage-presetPackage{
+    margin-right: 100px;
+    margin-left: 100px;
+
+}
