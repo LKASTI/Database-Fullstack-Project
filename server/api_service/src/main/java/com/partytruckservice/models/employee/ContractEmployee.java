@@ -5,15 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
+@Getter
+@Setter
 public class ContractEmployee extends Employee {
-    @Getter
-    @Setter
+
     private float hourlyPayRate;
 
+    public ContractEmployee() {
+        super();
+    }
+
     public ContractEmployee(int eID, String FName, String LName, float hourlyPayRate) {
-        this.employeeID = eID;
-        this.FName = FName;
-        this.LName = LName;
+        super(eID, FName, LName);
         this.hourlyPayRate = hourlyPayRate;
     }
 }

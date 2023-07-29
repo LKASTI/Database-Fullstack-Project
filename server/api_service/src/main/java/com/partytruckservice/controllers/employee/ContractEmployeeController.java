@@ -27,8 +27,8 @@ public class ContractEmployeeController {
     @PostMapping("/create")
     public int create(@RequestBody Map<String, String> body) {
         int eID = Integer.parseInt(body.get("employeeID"));
-        String FName = body.get("FName");
-        String LName = body.get("LName");
+        String FName = body.get("Fname");
+        String LName = body.get("Lname");
         float hourlyPayRate = Float.parseFloat(body.get("hourlyPayRate"));
         return jdbcContractEmployeeRepository.save(new ContractEmployee(eID, FName, LName, hourlyPayRate));
     }

@@ -2,10 +2,12 @@ package com.partytruckservice.models.employee;
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class FullTimeEmployee extends Employee {
     private float salary;
     @Size(max = 20)
@@ -13,12 +15,12 @@ public class FullTimeEmployee extends Employee {
     @Size(max = 2)
     private String driversLicenseState;
 
-    public FullTimeEmployee(){}
+    public FullTimeEmployee() {
+        super();
+    }
 
     public FullTimeEmployee(int eID, String FName, String LName, float salary, String driversLicense, String DLState) {
-        this.employeeID = eID;
-        this.FName = FName;
-        this.LName = LName;
+        super(eID, FName, LName);
         this.salary = salary;
         this.driversLicense = driversLicense;
         this.driversLicenseState = DLState;
