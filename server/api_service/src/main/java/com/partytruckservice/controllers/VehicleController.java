@@ -16,7 +16,7 @@ public class VehicleController {
 
     @PostMapping("create")
     public int create(@RequestBody Map<String, String> body){
-        int LicenseNum = Integer.parseInt(body.get("LicenseNum"));
+        String LicenseNum = body.get("LicenseNum");
         String state = body.get("state");
         int mileage = Integer.parseInt(body.get("mileage"));
         
@@ -26,7 +26,7 @@ public class VehicleController {
     }
 
     @PutMapping("/updateMileage{LicenseNum}/{mileage}")
-    public int updateMileage(@PathVariable int LicenseNum, @PathVariable int mileage){
+    public int updateMileage(@PathVariable String LicenseNum, @PathVariable int mileage){
         return jdbcVehicleRepository.updateMileage(LicenseNum, mileage);
     }
 

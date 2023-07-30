@@ -4,11 +4,11 @@ import org.springframework.data.annotation.*;
 
 public class Vehicle {
     @Id
-    private int LicenseNum;
+    private String LicenseNum;
     private String state;
     private int mileage;
 
-    public Vehicle(int LicenseNum, String state, int mileage) {
+    public Vehicle(String LicenseNum, String state, int mileage) {
         this.LicenseNum = LicenseNum;
         this.state = state;
         this.mileage = mileage;
@@ -18,7 +18,7 @@ public class Vehicle {
         return "Vehicle [" + LicenseNum + ", " + state + ", " + ", " + mileage + "]";
     }
 
-    public void setLicenseNum(int LicenseNum) {
+    public void setLicenseNum(String LicenseNum) {
         this.LicenseNum = LicenseNum;
     }
 
@@ -30,7 +30,7 @@ public class Vehicle {
         this.mileage = mileage;
     }
 
-    public int getLicenseNum() {
+    public String getLicenseNum() {
         return LicenseNum;
     }
 

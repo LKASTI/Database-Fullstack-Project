@@ -9,9 +9,9 @@ public interface VehicleRepository {
 
     int save(Vehicle vehicle);
 
-    int updateMileage(int LicenseNum, int mileage);
+    int updateMileage(String LicenseNum, int mileage);
 
-    int deleteByLicenseNum(int LicenseNum);
+    int deleteByLicenseNum(String LicenseNum);
 
     List<Vehicle> getAvailableVehicles();
 

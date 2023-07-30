@@ -26,7 +26,7 @@ public class JdbcVehicleRepository implements VehicleRepository{
     }
     
     @Override
-    public int updateMileage(int LicenseNum, int mileage) {
+    public int updateMileage(String LicenseNum, int mileage) {
         return jdbcTemplate.update(
             "UPDATE vehicle SET mileage=? where LicenseNum=?",
             mileage, LicenseNum
@@ -34,7 +34,7 @@ public class JdbcVehicleRepository implements VehicleRepository{
     }
 
     @Override
-    public int deleteByLicenseNum(int LicenseNum){
+    public int deleteByLicenseNum(String LicenseNum){
         return jdbcTemplate.update(
             "DELETE vehicle WHERE LicenseNum=?",
             LicenseNum
@@ -47,7 +47,7 @@ public class JdbcVehicleRepository implements VehicleRepository{
             "SELECT * FROM vehicle",
             (rs, rowNum) -> 
                 new Vehicle(
-                    rs.getInt("LicenseNum"),
+                    rs.getString("LicenseNum"),
                     rs.getString("state"),
                     rs.getInt("mileage")
                 )
