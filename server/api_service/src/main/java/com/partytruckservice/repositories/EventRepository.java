@@ -3,7 +3,7 @@ package com.partytruckservice.repositories;
 import com.partytruckservice.models.Item;
 import com.partytruckservice.models.dbEvent;
 
-import java.util.List;
+import java.util.*;
 import java.util.Optional;
 
 public interface EventRepository {
@@ -20,5 +20,6 @@ public interface EventRepository {
 
     List<dbEvent> getAllEvents();
 
+    public boolean eventTimeConflict(String start_time, String end_time);
    
 }

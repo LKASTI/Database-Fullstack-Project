@@ -5,7 +5,7 @@ import com.partytruckservice.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 import java.util.Optional;
 import java.util.Map;
 
@@ -34,6 +34,11 @@ public class dbEventController {
     @GetMapping("/getAllEvents")
     public List<dbEvent> getAllEvents(){
         return jdbcEventRepository.getAllEvents();
+    }
+
+    @GetMapping("/eventTimeConflict/{start_time}/{end_time}")
+    public boolean eventTimeConflict(@PathVariable String start_time, @PathVariable String end_time){
+        return jdbcEventRepository.eventTimeConflict(start_time, end_time);
     }
 }
 
