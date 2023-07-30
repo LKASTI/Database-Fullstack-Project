@@ -33,4 +33,9 @@ public class CustomerController {
         return jdbcCustomerRepository.updateName(customerId, Lname, Fname);
     }
 
+    @GetMapping("/getAllCustomers")
+    public List<Customer> getAllCustomers(){
+        return jdbcCustomerRepository.getAllCustomers();
+    }
+
 }
