@@ -32,4 +32,5 @@ public class CustomerController {
     public int updateName(@PathVariable int customerId, @PathVariable String Lname, @PathVariable String Fname){
         return jdbcCustomerRepository.updateName(customerId, Lname, Fname);
     }
+
 }

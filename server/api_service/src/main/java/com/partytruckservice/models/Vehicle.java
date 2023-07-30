@@ -57,4 +57,5 @@ public class Vehicle {
     public int getMileage() {
         return mileage;
     }
+
 }

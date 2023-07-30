@@ -14,4 +14,5 @@ public interface VehicleRepository {
     int deleteByEventID(int eventID);
 
     List<Vehicle> getAvailableVehicles();
+
 }

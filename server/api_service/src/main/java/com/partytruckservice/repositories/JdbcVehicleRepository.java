@@ -54,4 +54,5 @@ public class JdbcVehicleRepository implements VehicleRepository{
                 )
         );
     }
+
 }

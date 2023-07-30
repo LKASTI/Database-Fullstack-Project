@@ -14,4 +14,5 @@ public interface CustomerRepository {
     int deleteByCustomerId(int customerId);
 
     List<Customer> getAllCustomers();
+
 }

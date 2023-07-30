@@ -35,4 +35,5 @@ public class VehicleController {
     public List<Vehicle> getAvailableVehicles(){
         return jdbcVehicleRepository.getAvailableVehicles();
     }
+
 }

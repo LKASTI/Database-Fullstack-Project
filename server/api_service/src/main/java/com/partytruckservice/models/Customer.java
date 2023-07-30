@@ -1,7 +1,6 @@
 package com.partytruckservice.models;
 
 import org.springframework.data.annotation.*;
-import java.util.*;
 
 public class Customer {
     @Id
@@ -80,4 +79,5 @@ public class Customer {
     public int getDOB() {
         return DOB;
     }
+
 }
