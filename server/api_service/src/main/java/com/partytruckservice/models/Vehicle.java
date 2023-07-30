@@ -6,7 +6,6 @@ public class Vehicle {
     @Id
     private int LicenseNum;
     private String state;
-    private int eventID;
     private int mileage;
 
     public Vehicle(int LicenseNum, String state, int mileage) {
@@ -15,15 +14,8 @@ public class Vehicle {
         this.mileage = mileage;
     }
 
-    public Vehicle(int LicenseNum, String state, int eventID, int mileage) {
-        this.LicenseNum = LicenseNum;
-        this.state = state;
-        this.eventID = eventID;
-        this.mileage = mileage;
-    }
-
     public String toString() {
-        return "Vehicle [" + LicenseNum + ", " + state + ", " + eventID + ", " + mileage + "]";
+        return "Vehicle [" + LicenseNum + ", " + state + ", " + ", " + mileage + "]";
     }
 
     public void setLicenseNum(int LicenseNum) {
@@ -32,10 +24,6 @@ public class Vehicle {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public void setEventID(int eventID) {
-        this.eventID = eventID;
     }
 
     public void setMileage(int mileage) {
@@ -48,10 +36,6 @@ public class Vehicle {
 
     public String getState() {
         return state;
-    }
-
-    public int getEventID() {
-        return eventID;
     }
 
     public int getMileage() {

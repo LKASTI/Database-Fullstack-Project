@@ -20,24 +20,24 @@ public class JdbcVehicleRepository implements VehicleRepository{
     @Override
     public int save(Vehicle vehicle){
         return jdbcTemplate.update(
-            "INSERT INTO vehicle (LicenseNum, state, eventID, mileage) VALUES(?, ?, ?, ?)",
-            vehicle.getLicenseNum(), vehicle.getState(), vehicle.getEventID(), vehicle.getMileage()
+            "INSERT INTO vehicle (LicenseNum, state, mileage) VALUES(?, ?, ?)",
+            vehicle.getLicenseNum(), vehicle.getState(), vehicle.getMileage()
         );
     }
     
     @Override
-    public int updateMileage(int eventID, int mileage) {
+    public int updateMileage(int LicenseNum, int mileage) {
         return jdbcTemplate.update(
-            "UPDATE vehicle SET mileage=? where eventID=?",
-            mileage, eventID
+            "UPDATE vehicle SET mileage=? where LicenseNum=?",
+            mileage, LicenseNum
         );
     }
 
     @Override
-    public int deleteByEventID(int eventID){
+    public int deleteByLicenseNum(int LicenseNum){
         return jdbcTemplate.update(
-            "DELETE vehicle WHERE eventID=?",
-            eventID
+            "DELETE vehicle WHERE LicenseNum=?",
+            LicenseNum
         );
     }
 
@@ -49,7 +49,6 @@ public class JdbcVehicleRepository implements VehicleRepository{
                 new Vehicle(
                     rs.getInt("LicenseNum"),
                     rs.getString("state"),
-                    rs.getInt("eventID"),
                     rs.getInt("mileage")
                 )
         );

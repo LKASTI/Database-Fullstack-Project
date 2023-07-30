@@ -9,9 +9,9 @@ public interface VehicleRepository {
 
     int save(Vehicle vehicle);
 
-    int updateMileage(int eventID, int mileage);
+    int updateMileage(int LicenseNum, int mileage);
 
-    int deleteByEventID(int eventID);
+    int deleteByLicenseNum(int LicenseNum);
 
     List<Vehicle> getAvailableVehicles();
 
