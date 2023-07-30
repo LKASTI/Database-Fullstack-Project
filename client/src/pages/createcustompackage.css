@@ -1,0 +1,37 @@
+.createCustomPackage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;   
+}
+
+.createCustomPackage-itemSelection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.itemSelection-content-item{
+    
+}
+
+.itemSelection-content-quantity{
+    
+}
+
+#quantity-input{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 3px;
+}
+
+.createCustomPackage-packageView{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin-left: 200px;
+}

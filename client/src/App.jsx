@@ -15,7 +15,7 @@ function App() {
 
 
   return (
-    <AppContext.Provider values = {{}}> 
+    <AppContext.Provider value = {{}}> 
       <Router>
         <div>
           <Header/>
