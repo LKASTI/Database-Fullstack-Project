@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.Optional;
-import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -39,6 +37,11 @@ public class dbEventController {
     @GetMapping("/eventTimeConflict/{start_time}/{end_time}")
     public boolean eventTimeConflict(@PathVariable String start_time, @PathVariable String end_time){
         return jdbcEventRepository.eventTimeConflict(start_time, end_time);
+    }
+
+    @GetMapping("/getEventForCustomer/{cID}")
+    public List<dbEvent> getEventForCustomer(@PathVariable int cID){
+        return jdbcEventRepository.getEventForCustomer(cID);        
     }
 }
 

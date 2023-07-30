@@ -98,13 +98,29 @@ public class JdbcEventRepository implements EventRepository {
             return false;
         else 
             return true;
+                   
+     }
 
-       
-        
+     @Override
+     public List<dbEvent> getEventForCustomer(int cID)
+     {
 
-             
+         List<dbEvent> temp = jdbcTemplate.query(
+              "SELECT * FROM event e WHERE cID = " + cID + ";",
+            (rs, rowNum) -> 
+                new dbEvent(
+                    rs.getInt("eventID"),
+                    rs.getString("location"),
+                    rs.getDate("start_time"),
+                    rs.getDate("end_time"),
+                    rs.getInt("pID"),
+                    rs.getInt("cID")
+                )
+            );
 
-                     
+            return temp;
+
+
      }
 
 }
