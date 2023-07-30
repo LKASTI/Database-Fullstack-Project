@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
-import {Link, useParams} from "react-router-dom"
+import {Link, useParams, useNavigate} from "react-router-dom"
 import ChoosePackageType from "../components/ChoosePackageType"
 import "./createevent.css"
 
 const CreateEvent = () => {
+    const navigate = useNavigate()
     const [startTime, setStartTime] = useState()
     const [endTime, setEndTime] = useState()
     const [date, setDate] = useState()
@@ -16,6 +17,7 @@ const CreateEvent = () => {
     const [assignedEmployee, setAssignedEmployee] = useState()
     const [validEvent, setValidEvent] = useState(false)
     const [eventCreated, setEventCreated] = useState(false)
+    const [eID, setEID] = useState()
 
     //getting the cID from the URL
     const params = useParams()
@@ -41,6 +43,13 @@ const CreateEvent = () => {
 
         //set createdEvent state to TRUE
         //allows next button to be clickable and highlighted green
+    }
+
+    const handleNextPage = (e) => {
+        e.preventDefault()
+        navigate(`/event-confirmation/${cID}/${eID}`)
+        
+        
     }
 
     return(
@@ -79,6 +88,7 @@ const CreateEvent = () => {
 
                 <button id="next-button"
                     style={{backgroundColor: `${eventCreated? "green":"red"}`}}
+                    onClick={handleNextPage}
                 >
                     Next
                 </button>

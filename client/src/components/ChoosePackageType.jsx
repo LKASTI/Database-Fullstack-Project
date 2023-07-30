@@ -11,7 +11,7 @@ const ChoosePackageType = ({isPresetPack, isCustomPack, setIsPresetPackage, setI
                         setIsPresetPackage(true)
                         setIsCustomPackage(false)
                     }} 
-                    style={{backgroundColor: `${isPresetPack?"green": isCustomPack?"red":"grey"}`}}
+                    style={{backgroundColor: `${isPresetPack?"green": isCustomPack?"red":"rgb(187, 187, 187)"}`}}
                 >
                     Preset
                 </button>
@@ -25,7 +25,7 @@ const ChoosePackageType = ({isPresetPack, isCustomPack, setIsPresetPackage, setI
                         setIsPresetPackage(false)
                         setIsCustomPackage(true)
                     }} 
-                    style={{backgroundColor: `${isPresetPack?"red": isCustomPack?"green":"grey"}`}}
+                    style={{backgroundColor: `${isPresetPack?"red": isCustomPack?"green":"rgb(187, 187, 187)"}`}}
                     value={"Custom"}
                 >
                     Custom
