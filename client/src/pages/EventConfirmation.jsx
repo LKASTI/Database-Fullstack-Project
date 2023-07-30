@@ -19,6 +19,7 @@ const EventConfirmation = () => {
 
     return(
         <div className="eventConfirmation">
+            Event successfully Created!
         </div>
     )
 }
