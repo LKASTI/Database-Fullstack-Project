@@ -19,6 +19,11 @@ public class dbEventController {
     @Autowired
     private JdbcEventRepository jdbcEventRepository;
 
+    @PostMapping("/createEvent")
+    public int createEvent(dbEvent event){
+        return jdbcEventRepository.save(event);
+    }
+
     @PutMapping("/updateEventCustomer{cID}/{eventID}")
     public int updateEventCustomer(@PathVariable int cID, @PathVariable int eventID){
         return jdbcEventRepository.updateEventCustomer(cID, eventID);
