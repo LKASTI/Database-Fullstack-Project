@@ -14,7 +14,7 @@ public class JdbcCustomerRepository implements CustomerRepository{
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int count() {
+    public Integer count() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM customer", Integer.class);
     }
 
@@ -53,7 +53,7 @@ public class JdbcCustomerRepository implements CustomerRepository{
                     rs.getString("address"),
                     rs.getString("Fname"),
                     rs.getString("Lname"),
-                    rs.getInt("DOB")
+                    rs.getString("DOB")
                 )
         );
     }

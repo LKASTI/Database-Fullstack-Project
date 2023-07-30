@@ -5,7 +5,7 @@ import com.partytruckservice.models.Customer;
 import java.util.*;
 
 public interface CustomerRepository {
-    int count();
+    Integer count();
 
     int save(Customer customer);
 

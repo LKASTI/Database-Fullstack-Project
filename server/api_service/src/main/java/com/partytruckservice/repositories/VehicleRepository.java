@@ -5,7 +5,7 @@ import com.partytruckservice.models.Vehicle;
 import java.util.List;
 
 public interface VehicleRepository {
-    int count();
+    Integer count();
 
     int save(Vehicle vehicle);
 

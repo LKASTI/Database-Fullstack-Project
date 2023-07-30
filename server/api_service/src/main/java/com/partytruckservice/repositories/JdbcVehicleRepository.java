@@ -13,7 +13,7 @@ public class JdbcVehicleRepository implements VehicleRepository{
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int count() {
+    public Integer count() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Vehicle", Integer.class);
     }
 

@@ -21,7 +21,7 @@ public class CustomerController {
         String address = body.get("address");
         String Fname = body.get("Fname");
         String Lname = body.get("Lname");
-        int DOB = Integer.parseInt(body.get("DOB"));
+        String DOB = body.get("DOB");
         
         Customer customer = new Customer(customerID, phone, address, Fname, Lname, DOB);
 

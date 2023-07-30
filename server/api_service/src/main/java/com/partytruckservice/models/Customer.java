@@ -9,9 +9,9 @@ public class Customer {
     private String address;
     private String Fname;
     private String Lname;
-    private int DOB;
+    private String DOB;
 
-    public Customer(int phone, String address, String Fname, String Lname, int DOB) {
+    public Customer(int phone, String address, String Fname, String Lname, String DOB) {
         this.phone = phone;
         this.address = address;
         this.Fname = Fname;
@@ -19,7 +19,7 @@ public class Customer {
         this.DOB = DOB;
     }
 
-    public Customer(int customerID, int phone, String address, String Fname, String Lname, int DOB) {
+    public Customer(int customerID, int phone, String address, String Fname, String Lname, String DOB) {
         this.customerID = customerID;
         this.phone = phone;
         this.address = address;
@@ -52,7 +52,7 @@ public class Customer {
         this.Lname = Lname;
     }
 
-    public void setDOB(int DOB) {
+    public void setDOB(String DOB) {
         this.DOB = DOB;
     }
 
@@ -76,7 +76,7 @@ public class Customer {
         return Lname;
     }
 
-    public int getDOB() {
+    public String getDOB() {
         return DOB;
     }
 
