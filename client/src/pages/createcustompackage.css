@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;   
+
+    margin-top: 50px;
 }
 
 .createCustomPackage-itemSelection{
@@ -11,6 +12,51 @@
     justify-content: center;
     align-items: flex-start;
 
+}
+
+#nextpage-button{
+    background-color: orange;
+    filter:drop-shadow(0px 3px 0px rgb(216, 141, 0));
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 20px;
+}
+
+#confirm-button{
+    background-color: orange;
+    filter:drop-shadow(0px 3px 0px rgb(216, 141, 0));
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 20px;
+}
+
+#additem-button{
+    background-color: orange;
+    filter:drop-shadow(0px 3px 0px rgb(216, 141, 0));
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 20px;
 }
 
 .itemSelection-content-item{
@@ -33,5 +79,23 @@
     justify-content: flex-start;
     align-items: flex-start;
 
+
+    height: 100%;
+
     margin-left: 200px;
+    
+}
+
+.createCustomPackage-packageView > h1{
+    font-size: 30px;
+}
+.createCustomPackage-itemSelection > h1{
+    font-size: 30px;
+}
+
+.itemSelection-content-item > select{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 3px;
+    margin-bottom: 20px;
 }

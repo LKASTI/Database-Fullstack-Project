@@ -60,6 +60,7 @@ const CreateEvent = () => {
 
     const createAnEvent = async () => {
         //TODO: create a default package
+        //      test creating event end point
 
         if(validEvent)
         {

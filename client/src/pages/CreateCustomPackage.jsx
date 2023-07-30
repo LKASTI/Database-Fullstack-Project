@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-key */
 import {useState, useEffect} from "react"
-import {Link, useParams} from "react-router-dom"
+import {Link, useParams, useNavigate} from "react-router-dom"
 import axios from "axios"
 import "./createcustompackage.css"
 
 const CreateCustomPackage = () => {
+    const navigate = useNavigate()
+    const params = useParams()
+    const cID = params.cID
+    const eID = params.cID
     const [availableItems, setAvailableItems] = useState()
     const [newCustomPackageItems, setNewCustomPackageItems] = useState([])
 
@@ -12,6 +16,8 @@ const CreateCustomPackage = () => {
     const [newItemQuantity, setNewItemQuantity] = useState()
 
     const [validItemSelection, setValidItemSelection] = useState(false)
+
+    const [packageCreated, setPackageCreated] = useState(false)
 
     const [totalPrice, setTotalPrice] = useState(0)
 
@@ -26,6 +32,13 @@ const CreateCustomPackage = () => {
                 console.log(err)
             })
     }, [])
+
+    useEffect(() => {
+        if(newCustomPackageItems.length > 0)
+        {
+            setValidItemSelection(true)
+        }
+    }, [newCustomPackageItems])
 
     const checkItemQuantity = (e) => {
         //selectedItem cannot be null
@@ -56,12 +69,43 @@ const CreateCustomPackage = () => {
     }
 
     const handleConfirmPackage = async () => {
-        
+        if(validItemSelection)
+        {
+            /**
+             * TODO
+             * create package 
+             * 
+             * for every item in newCustomPackageItems
+             *      add the item to the package using axios method
+             * 
+             * get the event using cID
+             * change the event package id to the new package id
+             * store with axios
+             * 
+             * store true in packageCreated state when axios is successful
+             */
+
+            const newPID = Math.random() * ((Number.MAX_SAFE_INTEGER-10000) - (Number.MAX_SAFE_INTEGER+10000)) + (Number.MAX_SAFE_INTEGER+10000)
+            //create the package and add items
+            let event = axios.get(`http://127.0.0.1:8080/event/getEventForCustomer/${cID}`)
+            event = {...event, pID: newPID}
+        }
+    }
+
+    const handleNextPage = () => {
+        if(packageCreated)
+        {
+            navigate(`/event-confirmation/${cID}/${eID}`)
+        }
+        else
+        {
+            alert("Please add items to your package")
+        }
     }
 
     return(
         <div className="createCustomPackage">
-            <div className="createCustomPackge-itemSelection">
+            <div className="createCustomPackage-itemSelection">
                 <h1>Select Items</h1>
                 <div className="itemSelection-content">
                     <div className="itemSelection-content-item">
@@ -83,7 +127,7 @@ const CreateCustomPackage = () => {
                     {(newItem && newItemQuantity) && <label>Price: ${newItem.price * newItemQuantity}</label>}
                     <br/>
                     <br/>
-                    <button onClick={handleAddItemToPack}>Add to Pack</button>
+                    <button id="additem-button" onClick={handleAddItemToPack}>Add to Pack</button>
                 </div>
             </div>
             <div className="createCustomPackage-packageView">
@@ -103,7 +147,8 @@ const CreateCustomPackage = () => {
                     )
                 })}
                 <p id="totalprice">Total: ${totalPrice}</p>
-                <button onClick={handleConfirmPackage}>Confirm</button>
+                <button id="confirm-button" onClick={handleConfirmPackage}>Confirm</button>
+                <button id="nextpage-button"  onClick={handleNextPage}>Next</button>
             </div>
         </div>
     )
