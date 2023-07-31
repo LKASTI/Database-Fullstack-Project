@@ -49,7 +49,7 @@ public class JdbcCustomerRepository implements CustomerRepository{
             (rs, rowNum) -> 
                 new Customer(
                     rs.getInt("customerID"),
-                    rs.getInt("phone"),
+                    rs.getLong("phone"),
                     rs.getString("address"),
                     rs.getString("Fname"),
                     rs.getString("Lname"),

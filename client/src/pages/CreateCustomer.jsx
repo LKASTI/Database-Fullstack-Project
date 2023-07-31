@@ -1,6 +1,7 @@
 import "./createcustomer.css"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const CreateCustomer = () => {
     // use axios to post the customer form data on submit
@@ -20,8 +21,10 @@ const CreateCustomer = () => {
     const handleCustomerSubmission = async (e) => {
         e.preventDefault()
         const formattedDob = dob.replace("/", "-")
+        const randID = Math.floor(Math.random() * (10000000))
         const newCustomer = {
-            "phone": parseInt(phoneNum),
+            "customerID": randID,
+            "phone": Number(phoneNum),
             "address": address,
             "Fname": fname,
             "Lname": lname,
@@ -33,6 +36,12 @@ const CreateCustomer = () => {
         //post to springboot endpoint with axios
         //store the ID in cID state
         //if successfully posted and cID is set then set customerCreated to true
+        const res = await axios.post("http://127.0.0.1:8080/Customer/create", newCustomer)
+                    .then((res) => {console.log(res)})
+                    .catch((err) => {console.log(err.response.data)})
+
+        setCID(randID)
+        setCustomerCreated(true)
     }
 
     const handleNextPage = () => {
@@ -90,7 +99,7 @@ const CreateCustomer = () => {
                 <input id="submit-customer" type="submit" value="Submit" />
             </form>
             
-            <button onClick={handleNextPage}>Next</button>
+            <button id="nextpage-button" onClick={handleNextPage}>Next</button>
         </div>
     )
 }

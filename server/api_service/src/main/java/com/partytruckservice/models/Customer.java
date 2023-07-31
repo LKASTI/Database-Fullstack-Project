@@ -5,13 +5,13 @@ import org.springframework.data.annotation.*;
 public class Customer {
     @Id
     private int customerID;
-    private int phone;
+    private long phone;
     private String address;
     private String Fname;
     private String Lname;
     private String DOB;
 
-    public Customer(int phone, String address, String Fname, String Lname, String DOB) {
+    public Customer(long phone, String address, String Fname, String Lname, String DOB) {
         this.phone = phone;
         this.address = address;
         this.Fname = Fname;
@@ -19,7 +19,7 @@ public class Customer {
         this.DOB = DOB;
     }
 
-    public Customer(int customerID, int phone, String address, String Fname, String Lname, String DOB) {
+    public Customer(int customerID, long phone, String address, String Fname, String Lname, String DOB) {
         this.customerID = customerID;
         this.phone = phone;
         this.address = address;
@@ -36,7 +36,7 @@ public class Customer {
         this.customerID = customerID;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
@@ -60,7 +60,7 @@ public class Customer {
         return customerID;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 

@@ -14,10 +14,10 @@ public class CustomerController {
     @Autowired
     private JdbcCustomerRepository jdbcCustomerRepository;
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public int create(@RequestBody Map<String, String> body){
         int customerID = Integer.parseInt(body.get("customerID"));
-        int phone = Integer.parseInt(body.get("phone"));
+        long phone = Long.parseLong(body.get("phone"));
         String address = body.get("address");
         String Fname = body.get("Fname");
         String Lname = body.get("Lname");

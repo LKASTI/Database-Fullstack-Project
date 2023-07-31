@@ -66,8 +66,7 @@ const CreateEvent = () => {
         {
             if (isPresetPack || isCustomPack)
             {
-
-                const randID = Math.random() * ((Number.MAX_SAFE_INTEGER-10000) - (Number.MAX_SAFE_INTEGER+10000)) + (Number.MAX_SAFE_INTEGER+10000)
+                const randID = Math.random() * ((Number.MAX_SAFE_INTEGER-10000) - (Number.MIN_SAFE_INTEGER+10000)) + (Number.MIN_SAFE_INTEGER+10000)
                 setEID(randID)
                 const formattedStartTime = date + " " + startTime + ":00"
                 const formattedEndTime = date + " " + endTime + ":00"

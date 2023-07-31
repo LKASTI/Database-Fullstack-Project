@@ -85,7 +85,7 @@ const CreateCustomPackage = () => {
              * store true in packageCreated state when axios is successful
              */
 
-            const newPID = Math.random() * ((Number.MAX_SAFE_INTEGER-10000) - (Number.MAX_SAFE_INTEGER+10000)) + (Number.MAX_SAFE_INTEGER+10000)
+            const randID = Math.random() * ((Number.MAX_SAFE_INTEGER-10000) - (Number.MIN_SAFE_INTEGER+10000)) + (Number.MIN_SAFE_INTEGER+10000)
             //create the package and add items
             let event = axios.get(`http://127.0.0.1:8080/event/getEventForCustomer/${cID}`)
             event = {...event, pID: newPID}
