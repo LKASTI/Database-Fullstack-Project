@@ -5,6 +5,8 @@ import com.partytruckservice.models.dbEvent;
 
 import java.util.*;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 public interface EventRepository {
     
     int count();

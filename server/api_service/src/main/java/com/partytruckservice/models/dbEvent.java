@@ -2,16 +2,17 @@ package com.partytruckservice.models;
 
 import java.util.*;
 import org.springframework.data.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public class dbEvent {
     private int eventID;
     private String location;
-    private Date start_time;
-    private Date end_time;
+    private String start_time;
+    private String end_time;
     private int pID;
     private int cID;
 
-    public dbEvent(int eventID, String location, Date start_time, Date end_time, int pID, int cID){
+    public dbEvent(int eventID, String location, String start_time, String end_time, int pID, int cID){
         this.eventID = eventID;
         this.location = location;
         this.start_time = start_time;
@@ -20,6 +21,7 @@ public class dbEvent {
         this.cID = cID;
     }
 
+   
     public String toString(){
         return "Event [" + eventID + ", " + location + ", " + start_time + ", " + end_time + ", " + pID + ", " + cID + "]";
     }
@@ -32,11 +34,11 @@ public class dbEvent {
         this.location = location;
     }
 
-    public void setStart_Time(Date start_time){
+    public void setStart_Time(String start_time){
         this.start_time = start_time;
     }
 
-    public void setEnd_Time(Date end_time){
+    public void setEnd_Time(String end_time){
         this.end_time = end_time;
     }
 
@@ -56,11 +58,11 @@ public class dbEvent {
         return location;
     }
 
-    public Date getStart_Time(){
+    public String getStart_Time(){
         return start_time;
     }
 
-    public Date getEnd_Time(){
+    public String getEnd_Time(){
         return end_time;
     }
 
