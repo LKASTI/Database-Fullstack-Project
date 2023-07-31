@@ -15,6 +15,11 @@
 }
 
 .home-content-buttons{
+    background-color: cadetblue;
+    border: 3px solid gray;
+    border-radius: 15px;
+    padding:10px;
+    margin: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,8 +37,8 @@
     padding-top: 5px;
     padding-bottom: 5px;
 
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 
     border-radius: 20px;
 }

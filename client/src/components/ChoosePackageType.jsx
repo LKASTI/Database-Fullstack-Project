@@ -12,6 +12,7 @@ const ChoosePackageType = ({isPresetPack, isCustomPack, setIsPresetPackage, setI
                         setIsCustomPackage(false)
                     }} 
                     style={{backgroundColor: `${isPresetPack?"green": isCustomPack?"red":"rgb(187, 187, 187)"}`}}
+
                 >
                     Preset
                 </button>
