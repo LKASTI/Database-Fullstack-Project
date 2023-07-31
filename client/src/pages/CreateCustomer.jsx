@@ -46,7 +46,7 @@ const CreateCustomer = () => {
 
     const handleNextPage = () => {
         if(customerCreated)
-            navigate(`event-form/${cID}`)
+            navigate(`/event-form/${cID}`)
         else
             alert("Please fill the entire form.")
         

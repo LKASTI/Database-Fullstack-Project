@@ -58,10 +58,8 @@ const CreateEvent = () => {
         }
     }
 
-    const createAnEvent = async () => {
-        //TODO: create a default package
-        //      test creating event end point
-
+    const createAnEvent = async (e) => {
+        e.preventDefault()
         if(validEvent)
         {
             if (isPresetPack || isCustomPack)
@@ -79,8 +77,17 @@ const CreateEvent = () => {
                     cID: cID
                 }
     
-                const res = await axios.post("http://127.0.0.1:8080/event/createEvent", event)
+                const res = await axios.post("http://127.0.0.1:8080/event/create", event)
                 console.log(res)
+
+                if(res.data == 1)
+                {
+                    setEventCreated(true)
+                }
+                else
+                {
+                    alert("Please re-enter your event information.")
+                }
             }
             else
             {

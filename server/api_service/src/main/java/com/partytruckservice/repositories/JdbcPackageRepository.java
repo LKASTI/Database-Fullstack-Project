@@ -15,7 +15,7 @@ public class JdbcPackageRepository implements PackageRepository {
 
     // add item to package
     @Override
-    public int addItemToPackage(int itemID, PACKAGE pack, int quantity) {
+    public int addItemToPackage(int itemID, Package_ pack, int quantity) {
         return jdbcTemplate.update(
                 "INSERT INTO itemIncludesPackage (iID, pID, quantity) VALUES(?,?,?)",
                 itemID, pack.getPackageID(), quantity);
@@ -30,27 +30,27 @@ public class JdbcPackageRepository implements PackageRepository {
     }
 
     @Override
-    public int save(PACKAGE pack) {
+    public int save(Package_ pack) {
         return jdbcTemplate.update(
                 "INSERT INTO PACKAGE (packageID, name, discount) VALUES(?,?,?)",
                 pack.getPackageID(), pack.getName(), pack.getDiscount());
     }
 
     @Override
-    public int deletePackage(PACKAGE pack) {
+    public int deletePackage(Package_ pack) {
         return jdbcTemplate.update(
                 "DELETE PACKAGE WHERE packageID=?", pack.getPackageID());
     }
 
     @Override
-    public int getAllItemsInPackageList(PACKAGE pack) {
+    public int getAllItemsInPackageList(Package_ pack) {
         return jdbcTemplate.update(
                 "SELECT ITEM.name FROM ITEM, itemIncludesPackage WHERE itemIncludesPackage.iID=ITEM.itemID AND itemIncludesPackage.pID=?",
                 pack.getPackageID());
     }
 
     @Override
-    public int getAllPresetPackages(PACKAGE pack) {
+    public int getAllPresetPackages(Package_ pack) {
         return jdbcTemplate.update(
                 "SELECT PACKAGE.name FROM PACKAGE WHERE PACKAGE.packageID=?",
                 "p_*"); // the p_* is the identifier in the database for what is a preset package.

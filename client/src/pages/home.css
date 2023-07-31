@@ -14,6 +14,13 @@
     align-items: center;
 }
 
+.home-content-description{
+    font-size: 20px;
+    width: 400px;
+    text-align: center;
+    margin-top: 20px;
+}
+
 .home-content-buttons{
     background-color: cadetblue;
     border: 3px solid gray;
