@@ -53,6 +53,6 @@ public class JdbcPackageRepository implements PackageRepository {
     public int getAllPresetPackages(PACKAGE pack) {
         return jdbcTemplate.update(
                 "SELECT PACKAGE.name FROM PACKAGE WHERE PACKAGE.packageID=?",
-                pack.getPackageID());
+                "p_*"); // the p_* is the identifier in the database for what is a preset package.
     }
 }
