@@ -11,17 +11,22 @@ import java.util.*;
 @CrossOrigin
 @RequestMapping("/event")
 public class dbEventController {
-    //create an item 
-    //edit stock of item
-    //list all items
-    //get item by name
-
+  
     @Autowired
     private JdbcEventRepository jdbcEventRepository;
 
-    @PostMapping("/createEvent")
-    public int createEvent(dbEvent event){
-        return jdbcEventRepository.save(event);
+    @PostMapping("/create")
+    public int create(@RequestBody Map<String, String> body){
+        int eventID = Integer.parseInt(body.get("eventID"));
+        String location = body.get("location");
+        String start_time = body.get("start_time");
+        String end_time = body.get("end_time");
+        int pID = Integer.parseInt(body.get("pID"));
+        int cID = Integer.parseInt(body.get("cID"));
+        
+        dbEvent theEvent = new dbEvent(eventID, location, start_time, end_time, pID, cID);
+
+        return jdbcEventRepository.save(theEvent);
     }
 
     @PutMapping("/updateEventCustomer{cID}/{eventID}")

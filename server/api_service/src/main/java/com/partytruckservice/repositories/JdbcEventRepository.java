@@ -48,8 +48,8 @@ public class JdbcEventRepository implements EventRepository {
                 new dbEvent(
                     rs.getInt("eventId"),
                     rs.getString("location"),
-                    rs.getDate("start_time"),
-                    rs.getDate("end_time"),
+                    rs.getString("start_time"),
+                    rs.getString("end_time"),
                     rs.getInt("pID"),
                     rs.getInt("cID")
                 )
@@ -87,8 +87,8 @@ public class JdbcEventRepository implements EventRepository {
                 new dbEvent(
                     rs.getInt("eventID"),
                     rs.getString("location"),
-                    rs.getDate("start_time"),
-                    rs.getDate("end_time"),
+                    rs.getString("start_time"),
+                    rs.getString("end_time"),
                     rs.getInt("pID"),
                     rs.getInt("cID")
                 )
@@ -111,8 +111,8 @@ public class JdbcEventRepository implements EventRepository {
                 new dbEvent(
                     rs.getInt("eventID"),
                     rs.getString("location"),
-                    rs.getDate("start_time"),
-                    rs.getDate("end_time"),
+                    rs.getString("start_time"),
+                    rs.getString("end_time"),
                     rs.getInt("pID"),
                     rs.getInt("cID")
                 )
