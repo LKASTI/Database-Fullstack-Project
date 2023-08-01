@@ -37,12 +37,18 @@ public class packageController {
     }
 
     @GetMapping("/getAllPresetPackages")
-    public List<Customer> getAllPresetPackages(){
+    public List<Package> getAllPresetPackages(){
         return jdbcPackageRepository.getAllPresetPackages();
     }
 
     @GetMapping("/getAllItemsInPackageList")
-    public List<Customer> getAllItemsInPackageList(@PathVariable int packageID){
+    public List<Item> getAllItemsInPackageList(@PathVariable int packageID){
         return jdbcPackageRepository.getAllItemsInPackageList(packageID);
+    }
+
+    //  addItemToPackage(int itemID, Package pack, int quantity)
+    @PutMapping("/addItemToPackage{itemID}/{pack}/{quantity}")
+    public int updatePackage(@PathVariable int itemID, @PathVariable int packageID, @PathVariable int quantity){
+        return jdbcPackageRepository.addItemToPackage(itemID, packageID, quantity);
     }
 }
