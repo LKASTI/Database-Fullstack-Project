@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
-import {useState, useEffect} from "react"
-import {Link, useParams, useNavigate} from "react-router-dom"
 import axios from "axios"
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import "./createcustompackage.css"
 
 const CreateCustomPackage = () => {
@@ -20,6 +20,12 @@ const CreateCustomPackage = () => {
     const [packageCreated, setPackageCreated] = useState(false)
 
     const [totalPrice, setTotalPrice] = useState(0)
+
+    /**
+     * TODO
+     * - populate items table with a bunch of items
+     * - populate preset packages table with holiday themed packages
+     */
 
     useEffect(() =>  {
         //get all items from db and store in availableItems state
@@ -139,18 +145,26 @@ const CreateCustomPackage = () => {
                     return(
                         <div>
                             {item.name}: x{item.quantity}
-                            <button style={{color: "red", marginLeft: "5px"}} onClick={() => {
-                                const newPack = newCustomPackageItems.filter((i) => i.name != item.name)
-                                const newTotal = totalPrice - (item.price*item.quantity)
-                                setNewCustomPackageItems(newPack)
-                                setTotalPrice(newTotal)
-                            }}>X</button>
+                            <button style={{color: "red",fontSize: "20px", fontWeight: "bold", 
+                                            marginLeft: "5px", backgroundColor: "#ffcccb", padding: "0px 8px", borderRadius: "20px"}} 
+                                onClick={() => {
+                                    const newPack = newCustomPackageItems.filter((i) => i.name != item.name)
+                                    const newTotal = totalPrice - (item.price*item.quantity)
+                                    setNewCustomPackageItems(newPack)
+                                    setTotalPrice(newTotal)
+                                }}
+                            >
+                                X
+                            </button>
                         </div>
                     )
                 })}
                 <p id="totalprice">Total: ${totalPrice}</p>
                 <button id="confirm-button" onClick={handleConfirmPackage}>Confirm</button>
-                <button id="nextpage-button"  onClick={handleNextPage}>Next</button>
+                <button id="nextpage-button"  
+                    style={{backgroundColor: `${packageCreated? "green":"grey"}`}}
+                    onClick={handleNextPage}
+                >Next</button>
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react"
 import axios from 'axios'
-import {Link, useParams, useNavigate} from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import ChoosePackageType from "../components/ChoosePackageType"
 import "./createevent.css"
 
@@ -162,8 +162,8 @@ const CreateEvent = () => {
                     style={{backgroundColor: `${validEvent? "green":"red"}`}}
                 />
 
-                <button id="next-button"
-                    style={{backgroundColor: `${eventCreated? "green":"red"}`}}
+                <button id="nextpage-button"
+                    style={{backgroundColor: `${eventCreated? "green":"grey"}`}}
                     onClick={handleNextPage}
                 >
                     Next

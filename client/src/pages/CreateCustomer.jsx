@@ -1,7 +1,7 @@
-import "./createcustomer.css"
+import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import "./createcustomer.css"
 
 const CreateCustomer = () => {
     // use axios to post the customer form data on submit
@@ -99,7 +99,9 @@ const CreateCustomer = () => {
                 <input id="submit-customer" type="submit" value="Submit" />
             </form>
             
-            <button id="nextpage-button" onClick={handleNextPage}>Next</button>
+            <button id="nextpage-button" onClick={handleNextPage}
+                style={{backgroundColor: `${customerCreated? "green":"grey"}`}}
+            >Next</button>
         </div>
     )
 }

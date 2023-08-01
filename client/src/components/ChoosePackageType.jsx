@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "./choosepackagetype.css"
+import "./choosepackagetype.css";
 
 const ChoosePackageType = ({isPresetPack, isCustomPack, setIsPresetPackage, setIsCustomPackage}) =>{
 
@@ -17,7 +16,7 @@ const ChoosePackageType = ({isPresetPack, isCustomPack, setIsPresetPackage, setI
                     Preset
                 </button>
                 <p>
-                    preset package description
+                    A preset package contains holiday/seasonsal themed items that are already provided. The price is already determined, and a discount is provided.
                 </p>
             </div>
             <div className="choosePackage-customPackage">
@@ -32,7 +31,7 @@ const ChoosePackageType = ({isPresetPack, isCustomPack, setIsPresetPackage, setI
                     Custom
                 </button>
                 <p>
-                    custom package description
+                    A custom package is includes items/services chosen by you without an included discount.
                 </p>
             </div>
         </div>

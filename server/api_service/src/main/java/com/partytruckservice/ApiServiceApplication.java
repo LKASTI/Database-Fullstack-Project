@@ -16,9 +16,4 @@ public class ApiServiceApplication {
 		SpringApplication.run(ApiServiceApplication.class, args);
 	}
 
-	// @Override
-	// public void run(String... args) throws Exception{
-		
-	// }
-
 }
