@@ -100,9 +100,6 @@ const CreateEvent = () => {
         {
             alert("Please fill all event form details.")
         }
-
-        //set createdEvent state to TRUE
-        //allows next button to be clickable and highlighted green
     }
 
     const handleNextPage = (e) => {

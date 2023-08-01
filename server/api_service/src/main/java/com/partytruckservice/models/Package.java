@@ -1,17 +1,17 @@
 package com.partytruckservice.models;
 
-import org.springframework.data.annotation.*;
-import java.util.*;
+//import org.springframework.data.annotation.*;
+//import java.util.*;
 
-public class Package_ {
+public class Package {
     private int packageID;
     private double discount;
     private String name;
     // not sure if i need a price, not using it for now, can use it later if needed
-    private int price;
+    // private int price;
 
     // constructor
-    public Package_(String name, int packageID, double discount) {
+    public Package(String name, int packageID, double discount) {
         this.name = name;
         this.packageID = packageID;
         this.discount = discount;

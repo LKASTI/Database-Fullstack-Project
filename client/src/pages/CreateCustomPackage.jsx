@@ -8,7 +8,7 @@ const CreateCustomPackage = () => {
     const navigate = useNavigate()
     const params = useParams()
     const cID = params.cID
-    const eID = params.cID
+    const eID = params.eID
     const [availableItems, setAvailableItems] = useState()
     const [newCustomPackageItems, setNewCustomPackageItems] = useState([])
 
@@ -77,26 +77,39 @@ const CreateCustomPackage = () => {
     const handleConfirmPackage = async () => {
         if(validItemSelection)
         {
-            /**
-             * TODO
-             * create package 
-             * 
-             * for every item in newCustomPackageItems
-             *      add the item to the package using axios method
-             * 
-             * get the event using cID
-             * change the event package id to the new package id
-             * store with axios
-             * 
-             * store true in packageCreated state when axios is successful
-             */
-
+            //create pID and assign to new package
             const newPID = Math.floor(Math.random() * (10000000))
-            //create the package and add items
-            let event = axios.get(`http://127.0.0.1:8080/event/getEventForCustomer/${cID}`)
-            event = {...event, pID: newPID}
+            const newPackage = {
+                packageID: newPID,
+                name: "custom package",
+                discount: 0.00
+            }   
+            const createPackageResult = await axios.post(`http://127.0.0.1:8080/Package/create`, newPackage)
+            console.log(createPackageResult)
+            //add all items to package if successful
+            if(createPackageResult.data == 1)
+            {
+                //add all items in newCustomPackageItems
+                newCustomPackageItems.map(async (item) => {
+                    const itemID = item.itemID
+                    const quantity = item.quantity
 
-            //post new event
+                    const addItemResult = await axios.put(`http://127.0.0.1:8080/Package/addItemToPackage${itemID}/${newPID}/${quantity}`)
+                    console.log(addItemResult)
+                    //change stock of item in DB
+                    if(addItemResult.data == 1)
+                    {
+                        const newStock = item.stock - item.quantity
+                        const updateItemStock = await axios.put(`http://127.0.0.1:8080/item/updateItemStock${newStock}/${item.name}`)
+                        console.log("updatingStockResult: ", updateItemStock)
+                    }
+                })
+                //TODO: post new event
+                const updateEventPIDresult = await axios.put(`http://127.0.0.1:8080/event/updateEventPackage${newPID}/${eID}`)
+                console.log(updateEventPIDresult)
+                if(updateEventPIDresult.data == 1)
+                    setPackageCreated(true)
+            }
         }
     }
 

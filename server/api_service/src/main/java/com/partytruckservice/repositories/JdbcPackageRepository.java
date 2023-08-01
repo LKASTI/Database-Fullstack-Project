@@ -1,12 +1,16 @@
 package com.partytruckservice.repositories;
+import java.util.List;
 
-import com.partytruckservice.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+//import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import com.partytruckservice.models.Item;
+//import com.partytruckservice.models.*;
+import com.partytruckservice.models.Package;
+
+//import java.util.*;
 
 @Repository
 public class JdbcPackageRepository implements PackageRepository {
@@ -15,10 +19,10 @@ public class JdbcPackageRepository implements PackageRepository {
 
     // add item to package
     @Override
-    public int addItemToPackage(int itemID, Package_ pack, int quantity) {
+    public int addItemToPackage(int itemID, int packageID, int quantity) {
         return jdbcTemplate.update(
                 "INSERT INTO itemIncludesPackage (iID, pID, quantity) VALUES(?,?,?)",
-                itemID, pack.getPackageID(), quantity);
+                itemID, packageID, quantity);
     }
 
     // remove item from package
@@ -30,29 +34,52 @@ public class JdbcPackageRepository implements PackageRepository {
     }
 
     @Override
-    public int save(Package_ pack) {
+    public int save(Package pack) {
+
         return jdbcTemplate.update(
-                "INSERT INTO PACKAGE (packageID, name, discount) VALUES(?,?,?)",
+                "INSERT INTO Package (packageID, name, discount) VALUES(?,?,?)",
                 pack.getPackageID(), pack.getName(), pack.getDiscount());
     }
 
     @Override
-    public int deletePackage(Package_ pack) {
+    public int deletePackage(int packageID) {
         return jdbcTemplate.update(
-                "DELETE PACKAGE WHERE packageID=?", pack.getPackageID());
+                "DELETE Package WHERE packageID=?", packageID);
     }
 
     @Override
-    public int getAllItemsInPackageList(Package_ pack) {
-        return jdbcTemplate.update(
-                "SELECT ITEM.name FROM ITEM, itemIncludesPackage WHERE itemIncludesPackage.iID=ITEM.itemID AND itemIncludesPackage.pID=?",
-                pack.getPackageID());
+    public List<Item> getAllItemsInPackageList(int packageID) {
+        return jdbcTemplate.query(
+                "SELECT * FROM ITEM, itemIncludesPackage WHERE itemIncludesPackage.iID=ITEM.itemID AND itemIncludesPackage.pID=?",
+                (rs, rowNum) -> 
+                    new Item(
+                        rs.getInt("itemID"),
+                        rs.getString("name"),
+                        rs.getString("manufacturer"),
+                        rs.getFloat("price"),
+                        rs.getInt("stock")
+                    ),
+                    packageID
+        );
     }
 
     @Override
-    public int getAllPresetPackages(Package_ pack) {
-        return jdbcTemplate.update(
-                "SELECT PACKAGE.name FROM PACKAGE WHERE PACKAGE.packageID=?",
-                "p_*"); // the p_* is the identifier in the database for what is a preset package.
+    public List<Package> getAllPresetPackages() {
+        return jdbcTemplate.query(
+            "SELECT * FROM package WHERE package.name LIKE 'p_%'",
+            (rs, rowNum) -> 
+                new Package(
+                    rs.getString("name"),
+                    rs.getInt("packageID"),
+                    rs.getDouble("discount")
+                )
+        );
     }
+    // @Override
+    // public int updatePackageID(int packageID){
+    //     return jdbcTemplate.update(
+    //         "UPDATE PACKAGE SET packageID = ? WHERE packageID = ?",
+    //         packageID
+    //       );
+    //  }
 }
