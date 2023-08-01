@@ -46,16 +46,23 @@ public class JdbcPackageRepository implements PackageRepository {
     }
 
     @Override
-    public int getAllItemsInPackageList(Package pack) {
-        return jdbcTemplate.update(
+    public int getAllItemsInPackageList(int packageID) {
+        return jdbcTemplate.query(
                 "SELECT ITEM.name FROM ITEM, itemIncludesPackage WHERE itemIncludesPackage.iID=ITEM.itemID AND itemIncludesPackage.pID=?",
-                pack.getPackageID());
+                packageID);
     }
 
     @Override
-    public int getAllPresetPackages(Package pack) {
-        return jdbcTemplate.update(
+    public int getAllPresetPackages() {
+        return jdbcTemplate.query(
                 "SELECT Package.name FROM Package WHERE Package.packageID=?",
                 "p_*"); // the p_* is the identifier in the database for what is a preset package.
     }
+    @Override
+    public int updatePackage(int packageID){
+        return jdbcTemplate.update(
+            "UPDATE PACKAGE SET packageID = ? WHERE packageID = ?",
+              pID
+          );
+     }
 }

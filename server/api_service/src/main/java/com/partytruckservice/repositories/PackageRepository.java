@@ -10,11 +10,13 @@ public interface PackageRepository {
 
     int removeItemFromPackage(int itemID, int packageID);
 
+    int updatePackageID(int packageID);
+
     int save(Package pack);
 
     int deletePackage(Package pack);
 
-    int getAllItemsInPackageList(Package pack); // should be a List<Item>
+    int getAllItemsInPackageList(int packageID); // should be a List<Item>
 
-    int getAllPresetPackages(Package pack); // should be List<Package>
+    int getAllPresetPackages(); // should be List<Package>
 }
