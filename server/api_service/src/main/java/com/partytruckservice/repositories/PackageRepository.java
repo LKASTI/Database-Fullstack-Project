@@ -1,21 +1,21 @@
 package com.partytruckservice.repositories;
 
 import com.partytruckservice.models.Item;
-import com.partytruckservice.models.PACKAGE;
+import com.partytruckservice.models.Package;
 
 import java.util.*;
 
 public interface PackageRepository {
 
-    int addItemToPackage(int itemID, PACKAGE pack, int quantity);
+    int addItemToPackage(int itemID, Package pack, int quantity);
 
     int removeItemFromPackage(int itemID, int packageID);
 
-    int save(PACKAGE pack);
+    int save(Package pack);
 
-    int deletePackage(PACKAGE pack);
+    int deletePackage(Package pack);
 
-    int getAllItemsInPackageList(PACKAGE pack); // should be a List<Item>
+    int getAllItemsInPackageList(Package pack); // should be a List<Item>
 
-    int getAllPresetPackages(PACKAGE pack); // should be List<PACKAGE>
+    int getAllPresetPackages(Package pack); // should be List<Package>
 }
