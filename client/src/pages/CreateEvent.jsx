@@ -82,6 +82,7 @@ const CreateEvent = () => {
                     setEventCreated(true)
                     const employees = await axios.get("http://127.0.0.1:8080/fullTimeEmployee/getAllFullTimeEmployees")
                     const empID = employees.data[0].employeeID
+                    console.log(empID)
                     const postres = await axios.post(`http://127.0.0.1:8080/fullTimeEmployee/saveEmployeeWorksOn/${empID}/${randID}`)
                     console.log(postres.data)
                 }
