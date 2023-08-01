@@ -56,10 +56,10 @@ public class packageController {
     public int removeItemFromPackage(@PathVariable int itemID, @PathVariable int packageID){
         return jdbcPackageRepository.removeItemFromPackage(itemID, packageID);
     }
-    @Override
-    public int removeItemFromPackage(int itemID, int packageID) {
-        return jdbcTemplate.update(
-                "DELETE itemIncludesPackage WHERE iID=? AND pID=?",
-                itemID, packageID);
-    }
+    // @Override
+    // public int removeItemFromPackage(int itemID, int packageID) {
+    //     return jdbcTemplate.update(
+    //             "DELETE itemIncludesPackage WHERE iID=? AND pID=?",
+    //             itemID, packageID);
+    // }
 }
