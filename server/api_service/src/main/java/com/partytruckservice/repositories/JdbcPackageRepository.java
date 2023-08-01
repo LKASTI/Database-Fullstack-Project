@@ -33,6 +33,7 @@ public class JdbcPackageRepository implements PackageRepository {
 
     @Override
     public int save(Package pack) {
+
         return jdbcTemplate.update(
                 "INSERT INTO Package (packageID, name, discount) VALUES(?,?,?)",
                 pack.getPackageID(), pack.getName(), pack.getDiscount());

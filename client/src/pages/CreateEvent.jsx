@@ -8,13 +8,13 @@ const CreateEvent = () => {
     const navigate = useNavigate()
     const [startTime, setStartTime] = useState()
     const [endTime, setEndTime] = useState()
+    const [validTimes, setValidTimes] = useState(false)
     const [date, setDate] = useState()
     
     const [isPresetPack, setIsPresetPackage] = useState(false)
     const [isCustomPack, setIsCustomPackage] = useState(false)
 
     const [eventAddress, setEventAddress] = useState()
-    const [assignedEmployee, setAssignedEmployee] = useState()
     const [validEvent, setValidEvent] = useState(false)
     const [eventCreated, setEventCreated] = useState(false)
     const [eID, setEID] = useState()
@@ -23,23 +23,81 @@ const CreateEvent = () => {
     const params = useParams()
     const cID = params.cID
 
-    const checkTimes = async () => {
-        //check if the given times conflict with a prexisting event and if an employee is able to attend
-        //if the times are valid
-            //store the employee id in assignedEmployee
-            //if all event fields are filled 
-                //set validEvent state to TRUE which allows submit button to become clickable and highlighted green
+    useEffect(() => {
+        if(eventAddress && (isPresetPack || isCustomPack) && validTimes)
+            setValidEvent(true)
+    }, [eventAddress, isPresetPack, isCustomPack, validTimes])
+
+    const checkTimes = async (e) => {
+        e.preventDefault()
+        if(startTime == null || endTime == null || date == null)
+        {
+            alert("Please fill the date, and time fields")
+            return
+        }
         
+        const formattedStartTime = date + " " + startTime + ":00"
+        const formattedEndTime = date + " " + endTime + ":00"
+        // console.log(formattedStartTime)
+        // console.log(formattedEndTime)
+        const timeIsNotAvailable = await axios.get(`http://127.0.0.1:8080/event/eventTimeConflict/${formattedStartTime}/${formattedEndTime}`)
+        const employees = await axios.get("http://127.0.0.1:8080/fullTimeEmployee/getAllFullTimeEmployees")
+        // console.log(employees.data[0].employeeID)
+        setEID(employees.data[0].employeeID)
+
+        // console.log(timeIsNotAvailable.data)
+        if(timeIsNotAvailable.data == false)
+        {
+            setValidTimes(true)
+            alert("Success! Times are available")
+        }
+        else
+        {
+            setValidTimes(false)
+            alert("An event is already scheduled at this time. Please choose a different time.")
+        }
     }
 
-    const createAnEvent = async () => {
-        //create a default package
-        /*
-          create an event with
-          assigned employee id, cID, 
-          event address, start and end times,
-          and any available vehicle ID
-        */
+    const createAnEvent = async (e) => {
+        e.preventDefault()
+        if(validEvent)
+        {
+            if (isPresetPack || isCustomPack)
+            {
+                const randID = Math.floor(Math.random() * (10000000))
+                setEID(randID)
+                const formattedStartTime = date + " " + startTime + ":00"
+                const formattedEndTime = date + " " + endTime + ":00"
+                const event = {
+                    eventID: randID,
+                    location: eventAddress,
+                    start_time: formattedStartTime,
+                    end_time: formattedEndTime,
+                    pID: 1,
+                    cID: cID
+                }
+    
+                const res = await axios.post("http://127.0.0.1:8080/event/create", event)
+                console.log(res)
+
+                if(res.data == 1)
+                {
+                    setEventCreated(true)
+                }
+                else
+                {
+                    alert("Please re-enter your event information.")
+                }
+            }
+            else
+            {
+                alert("Please choose either a preset or custom package")
+            }
+        }
+        else
+        {
+            alert("Please fill all event form details.")
+        }
 
         //set createdEvent state to TRUE
         //allows next button to be clickable and highlighted green
@@ -47,7 +105,12 @@ const CreateEvent = () => {
 
     const handleNextPage = (e) => {
         e.preventDefault()
-        navigate(`/event-confirmation/${cID}/${eID}`)
+        if(isPresetPack)
+            navigate(`/preset-package-form/${cID}/${eID}`)
+        else if(isCustomPack)
+            navigate(`/custom-package-form/${cID}/${eID}`)
+        else
+            alert("Please fill out all details in the form.")
         
         
     }
@@ -58,26 +121,39 @@ const CreateEvent = () => {
                 isPresetPack={isPresetPack} isCustomPack={isCustomPack}
                 setIsPresetPackage={setIsPresetPackage} setIsCustomPackage={setIsCustomPackage}    
             />
-            <form className="createEvent-form">
+            <form className="createEvent-form" onSubmit={createAnEvent}>
                 <label id="event-info-title">Enter Event Info</label>
 
                 <div className="createEvent-address-box">
                     <label>Address</label>
-                    <input id="event-userinput"/>
+                    <input id="event-userinput" 
+                        required
+                        value={eventAddress}
+                        onChange={(e) => {setEventAddress(e.target.value)}}
+                    />
                 </div>
 
                 <div className="createEvent-date-box">
                     <label>Date of Event</label>
-                    <input id="event-userinput"/>
+                    <input id="event-userinput" type="date" 
+                        required
+                        value={date} 
+                        onChange={(e) => {setDate(e.target.value)}}
+                    />
                 </div>
 
                 <div id="createEvent-eventTime-box">
                     <div className="eventTime-start_end">
                         <label>Start Time of Event</label>
-                        <input id="event-userinput" type="time"/>
-
+                        <input id="event-userinput" type="time"
+                            required
+                            onChange={(e) => {setStartTime(e.target.value)}}
+                        />
                         <label>End Time of Event</label>
-                        <input id="event-userinput" type="time"/>
+                        <input id="event-userinput" type="time"
+                            required
+                            onChange={(e) => {setEndTime(e.target.value)}}
+                        />
                     </div>
                     <button id="checkTimes-button" onClick={checkTimes}>Check<br/> Times</button>
                 </div>

@@ -1,4 +1,10 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
+<<<<<<< HEAD
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ]
+=======
     "java.compile.nullAnalysis.mode": "automatic"
+>>>>>>> 721473ffbc92efdff94d97ce420c7527935aa691
 }
