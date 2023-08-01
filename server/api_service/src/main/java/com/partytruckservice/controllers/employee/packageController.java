@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 // delete packages maybe
-// remove item from package
 @RestController
 @CrossOrigin
 @RequestMapping("/Package")
@@ -56,10 +55,10 @@ public class packageController {
     public int removeItemFromPackage(@PathVariable int itemID, @PathVariable int packageID){
         return jdbcPackageRepository.removeItemFromPackage(itemID, packageID);
     }
-    // @Override
-    // public int removeItemFromPackage(int itemID, int packageID) {
-    //     return jdbcTemplate.update(
-    //             "DELETE itemIncludesPackage WHERE iID=? AND pID=?",
-    //             itemID, packageID);
-    // }
+    
+    //remove package
+    @PutMapping("/deletePackage{packageID}")
+    public int deletePackage(@PathVariable int packageID){
+        return jdbcPackageRepository.deletePackage(packageID);
+    }
 }
