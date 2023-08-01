@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-// read packages
 // delete packages maybe
-// addItemToPackage( int packageID)
 // remove item from package
-// get items in package
 @RestController
 @CrossOrigin
 @RequestMapping("/Package")
@@ -36,11 +33,13 @@ public class packageController {
         return jdbcPackageRepository.updatePackage(name, packageID, discount);
     }
 
+    //get preset packages
     @GetMapping("/getAllPresetPackages")
     public List<Package> getAllPresetPackages(){
         return jdbcPackageRepository.getAllPresetPackages();
     }
 
+    //get items in package
     @GetMapping("/getAllItemsInPackageList")
     public List<Item> getAllItemsInPackageList(@PathVariable int packageID){
         return jdbcPackageRepository.getAllItemsInPackageList(packageID);
@@ -48,7 +47,19 @@ public class packageController {
 
     //  addItemToPackage(int itemID, Package pack, int quantity)
     @PutMapping("/addItemToPackage{itemID}/{pack}/{quantity}")
-    public int updatePackage(@PathVariable int itemID, @PathVariable int packageID, @PathVariable int quantity){
+    public int addItemToPackage(@PathVariable int itemID, @PathVariable int packageID, @PathVariable int quantity){
         return jdbcPackageRepository.addItemToPackage(itemID, packageID, quantity);
+    }
+
+    // remove item from package
+    @PutMapping("/removeItemFromPackage{itemID}/{packageID}")
+    public int removeItemFromPackage(@PathVariable int itemID, @PathVariable int packageID){
+        return jdbcPackageRepository.removeItemFromPackage(itemID, packageID);
+    }
+    @Override
+    public int removeItemFromPackage(int itemID, int packageID) {
+        return jdbcTemplate.update(
+                "DELETE itemIncludesPackage WHERE iID=? AND pID=?",
+                itemID, packageID);
     }
 }
