@@ -41,9 +41,6 @@ const CreateEvent = () => {
         // console.log(formattedStartTime)
         // console.log(formattedEndTime)
         const timeIsNotAvailable = await axios.get(`http://127.0.0.1:8080/event/eventTimeConflict/${formattedStartTime}/${formattedEndTime}`)
-        const employees = await axios.get("http://127.0.0.1:8080/fullTimeEmployee/getAllFullTimeEmployees")
-        // console.log(employees.data[0].employeeID)
-        setEID(employees.data[0].employeeID)
 
         // console.log(timeIsNotAvailable.data)
         if(timeIsNotAvailable.data == false)
@@ -83,6 +80,10 @@ const CreateEvent = () => {
                 if(res.data == 1)
                 {
                     setEventCreated(true)
+                    const employees = await axios.get("http://127.0.0.1:8080/fullTimeEmployee/getAllFullTimeEmployees")
+                    const empID = employees.data[0].employeeID
+                    const postres = await axios.post(`http://127.0.0.1:8080/fullTimeEmployee/saveEmployeeWorksOn/${empID}/${randID}`)
+                    console.log(postres.data)
                 }
                 else
                 {

@@ -27,6 +27,12 @@ public class JdbcFullTimeEmployeeRepository implements FullTimeEmployeeRepositor
         }
 
         @Override
+        public int assignEmployeeWorksOn(int employeeID, int eventID){
+                return jdbcTemplate.update("INSERT INTO employeeworkson (empID, evID) values(?, ?)", 
+                employeeID, eventID);
+        }
+
+        @Override
         public int update(FullTimeEmployee fullTimeEmployee) {
                 return jdbcTemplate.update(
                                 "UPDATE employee SET Fname=?, Lname=? WHERE employeeID = ?; UPDATE fulltime_employee SET salary=?, driversLicense=?, DL_state=? WHERE eID = ?",

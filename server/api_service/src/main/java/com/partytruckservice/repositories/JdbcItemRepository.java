@@ -1,13 +1,12 @@
 package com.partytruckservice.repositories;
 
-import com.partytruckservice.models.Item;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import com.partytruckservice.models.Item;
 
 @Repository
 public class JdbcItemRepository implements ItemRepository {
@@ -15,7 +14,7 @@ public class JdbcItemRepository implements ItemRepository {
     private JdbcTemplate jdbcTemplate;
     
     @Override
-    public int count() {
+    public Integer count() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM item", Integer.class);
     }
 

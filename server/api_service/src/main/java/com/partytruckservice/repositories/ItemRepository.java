@@ -1,13 +1,12 @@
 package com.partytruckservice.repositories;
 
-import com.partytruckservice.models.Item;
-
 import java.util.List;
-import java.util.Optional;
+
+import com.partytruckservice.models.Item;
 
 public interface ItemRepository {
     
-    int count();
+    Integer count();
 
     int save(Item item);
 

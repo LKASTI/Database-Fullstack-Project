@@ -9,6 +9,8 @@ public interface FullTimeEmployeeRepository {
     
     public int update(FullTimeEmployee fullTimeEmployee);
 
+    public int assignEmployeeWorksOn(int empID, int evID);
+
     public List<FullTimeEmployee> getByID(int eID);
 
     public List<FullTimeEmployee> getAllFullTimeEmployees();
