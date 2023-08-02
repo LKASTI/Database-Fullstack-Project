@@ -1,11 +1,12 @@
 package com.partytruckservice.repositories;
 
-import com.partytruckservice.models.Vehicle;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import com.partytruckservice.models.Vehicle;
 
 @Repository
 public class JdbcVehicleRepository implements VehicleRepository{
@@ -15,6 +16,14 @@ public class JdbcVehicleRepository implements VehicleRepository{
     @Override
     public Integer count() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Vehicle", Integer.class);
+    }
+
+    @Override
+    public int assignVehicleToEvent(int eventID){
+        return jdbcTemplate.update(
+            "INSERT INTO delivers (eventID, LicenseNum) VALUES (?, (SELECT LicenseNum FROM Vehicle WHERE Vehicle.LicenseNum NOT IN (SELECT LicenseNum FROM (SELECT * FROM delivers) as x) LIMIT 1))",
+            eventID
+        );
     }
 
     @Override

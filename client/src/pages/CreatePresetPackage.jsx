@@ -21,7 +21,6 @@ const CreatePresetPackage = () => {
         setPrice(100)
 
         const getListOfPresetPackages = async () => {
-            //TODO
             //axios call to get all preset packages and store in presetPackages state
             const listOfPresetPackages = await axios.get(`http://127.0.0.1:8080/Package/getAllPresetPackages`)
             console.log(listOfPresetPackages)

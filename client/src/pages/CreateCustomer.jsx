@@ -32,10 +32,6 @@ const CreateCustomer = () => {
         }
 
         console.log(newCustomer)
-        /*TODO*/
-        //post to springboot endpoint with axios
-        //store the ID in cID state
-        //if successfully posted and cID is set then set customerCreated to true
         const res = await axios.post("http://127.0.0.1:8080/Customer/create", newCustomer)
                     .then((res) => {console.log(res)})
                     .catch((err) => {console.log(err.response.data)})

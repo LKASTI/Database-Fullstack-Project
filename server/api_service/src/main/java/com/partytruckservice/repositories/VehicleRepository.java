@@ -1,8 +1,8 @@
 package com.partytruckservice.repositories;
 
-import com.partytruckservice.models.Vehicle;
-
 import java.util.List;
+
+import com.partytruckservice.models.Vehicle;
 
 public interface VehicleRepository {
     Integer count();
@@ -14,5 +14,7 @@ public interface VehicleRepository {
     int deleteByLicenseNum(String LicenseNum);
 
     List<Vehicle> getAvailableVehicles();
+
+    int assignVehicleToEvent(int eventID);
 
 }

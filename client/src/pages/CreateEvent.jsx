@@ -38,11 +38,9 @@ const CreateEvent = () => {
         
         const formattedStartTime = date + " " + startTime + ":00"
         const formattedEndTime = date + " " + endTime + ":00"
-        // console.log(formattedStartTime)
-        // console.log(formattedEndTime)
+        //check for time conflict
         const timeIsNotAvailable = await axios.get(`http://127.0.0.1:8080/event/eventTimeConflict/${formattedStartTime}/${formattedEndTime}`)
 
-        // console.log(timeIsNotAvailable.data)
         if(timeIsNotAvailable.data == false)
         {
             setValidTimes(true)
@@ -61,12 +59,12 @@ const CreateEvent = () => {
         {
             if (isPresetPack || isCustomPack)
             {
-                const randID = Math.floor(Math.random() * (10000000))
-                setEID(randID)
+                const newEID = Math.floor(Math.random() * (10000000))
+                setEID(newEID)
                 const formattedStartTime = date + " " + startTime + ":00"
                 const formattedEndTime = date + " " + endTime + ":00"
                 const event = {
-                    eventID: randID,
+                    eventID: newEID,
                     location: eventAddress,
                     start_time: formattedStartTime,
                     end_time: formattedEndTime,
@@ -75,20 +73,24 @@ const CreateEvent = () => {
                 }
     
                 const res = await axios.post("http://127.0.0.1:8080/event/create", event)
-                console.log(res)
+                console.log("Event created status: ", res.data)
 
                 if(res.data == 1)
                 {
                     setEventCreated(true)
+                    //assign employee
                     const employees = await axios.get("http://127.0.0.1:8080/fullTimeEmployee/getAllFullTimeEmployees")
                     const empID = employees.data[0].employeeID
-                    console.log(empID)
-                    const postres = await axios.post(`http://127.0.0.1:8080/fullTimeEmployee/saveEmployeeWorksOn/${empID}/${randID}`)
-                    console.log(postres.data)
+                    console.log("Employee retrieved status: ", empID)
+                    const empStatus = await axios.post(`http://127.0.0.1:8080/fullTimeEmployee/saveEmployeeWorksOn/${empID}/${newEID}`)
+                    console.log("Employee assigned status: ", empStatus.data)
+                    //assign vehicle
+                    const vehicleStatus = await axios.post(`http://127.0.0.1:8080/Vehicle/assignVehicleToEvent${newEID}`)
+                    console.log("Vehicle assigned status: ", vehicleStatus.data)
                 }
                 else
                 {
-                    alert("Please re-enter your event information.")
+                    alert("Error occurred. Please refresh page.")
                 }
             }
             else
@@ -104,14 +106,15 @@ const CreateEvent = () => {
 
     const handleNextPage = (e) => {
         e.preventDefault()
-        if(isPresetPack)
-            navigate(`/preset-package-form/${cID}/${eID}`)
-        else if(isCustomPack)
-            navigate(`/custom-package-form/${cID}/${eID}`)
+        if(eventCreated)
+        {
+            if(isPresetPack)
+                navigate(`/preset-package-form/${cID}/${eID}`)
+            else if(isCustomPack)
+                navigate(`/custom-package-form/${cID}/${eID}`)
+        }
         else
             alert("Please fill out all details in the form.")
-        
-        
     }
 
     return(

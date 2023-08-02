@@ -104,7 +104,7 @@ const CreateCustomPackage = () => {
                         console.log("updatingStockResult: ", updateItemStock)
                     }
                 })
-                //TODO: post new event
+                //post new event
                 const updateEventPIDresult = await axios.put(`http://127.0.0.1:8080/event/updateEventPackage${newPID}/${eID}`)
                 console.log(updateEventPIDresult)
                 if(updateEventPIDresult.data == 1)
