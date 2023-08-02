@@ -1,9 +1,18 @@
 .eventConfirmation{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     margin-top: 300px;
 
     font-size: 30px;
+    font-weight: bold;
 }
+
+.eventConfirmation p{
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+}
+
