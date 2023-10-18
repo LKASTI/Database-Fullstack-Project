@@ -73,9 +73,6 @@ public class JdbcEventRepository implements EventRepository {
      {
 
             List<dbEvent> temp = jdbcTemplate.query(
-            //   "SELECT * FROM event e WHERE (('" + start_time + "' >= e.start_time) AND ('" + start_time + "' <= e.end_time))"
-            //                         + " OR (('" + end_time + "' >= e.start_time) AND ('" + end_time + "' <= e.end_time))"
-            //                         + " OR (('" + start_time + "' <= e.start_time) AND ('" + end_time + " >= e.end_time'))"
             "SELECT * FROM event e WHERE ('"+start_time+"' BETWEEN e.start_time AND e.end_time)"
                                     + " OR ('"+end_time+"' BETWEEN e.start_time AND e.end_time)"
                                     + " OR (e.start_time BETWEEN '" + start_time+ "' AND '" + end_time+ "')"
